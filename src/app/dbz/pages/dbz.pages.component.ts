@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'dbz-pages',
+  selector: 'app-dbz-main-pages',
   templateUrl: './dbz.pages.component.html'
 })
 
-export class dbzpagescomponent implements OnInit {
+export class dbzpagesComponent implements OnInit {
   constructor() { }
 
   ngOnInit() { }

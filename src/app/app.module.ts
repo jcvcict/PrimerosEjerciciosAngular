@@ -6,16 +6,18 @@ import { AppComponent } from './app.component';
 import { Counter } from './counter/counter.component';
 import { HeroComponent } from './heroes/hero/hero.component';
 import { ListComponent } from './heroes/list/list.component';
-import { dbzpagescomponent } from './dbz/pages/dbz.pages.component';
+import { DbzModule } from './dbz/dbz.module';
+
 
 
 @NgModule({
   declarations: [
-    AppComponent,Counter, HeroComponent, ListComponent, dbzpagescomponent
+    AppComponent,Counter, HeroComponent, ListComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,DbzModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
