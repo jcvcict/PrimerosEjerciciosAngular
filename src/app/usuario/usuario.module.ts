@@ -1,23 +1,26 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RegistrarseComponent } from './registrarse/registrarse.component';
-import { BrowserModule } from '@angular/platform-browser';
+import { RegistroComponent } from './registro/registro.component';
+import { RegistroService } from './registro.service';
 import { ReactiveFormsModule } from '@angular/forms'; // Importa ReactiveFormsModule
-import {  HttpClientModule } from '@angular/common/http';
 
 
 
 
 @NgModule({
   declarations: [
-    RegistrarseComponent
+    RegistroComponent
   ],
   imports: [
-    CommonModule,HttpClientModule,BrowserModule,ReactiveFormsModule
+    CommonModule,ReactiveFormsModule,
   ],
   exports:[
-    RegistrarseComponent
-  ]
-
+    RegistroComponent
+  ],
+  providers:[RegistroService]
 })
-export class UsuarioModule { }
+export class UsuarioModule {
+
+
+}
+

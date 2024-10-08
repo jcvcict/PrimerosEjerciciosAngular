@@ -7,19 +7,22 @@ import { Counter } from './counter/counter.component';
 import { HeroComponent } from './heroes/hero/hero.component';
 import { ListComponent } from './heroes/list/list.component';
 import { UsuarioModule } from "./usuario/usuario.module";
+import { provideHttpClient } from '@angular/common/http';
+
+
 
 
 
 @NgModule({
   declarations: [
-    AppComponent,Counter, HeroComponent, ListComponent,
+    AppComponent,Counter, HeroComponent, ListComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    UsuarioModule
+    AppRoutingModule,UsuarioModule
+
 ],
-  providers: [],
+  providers: [provideHttpClient()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
