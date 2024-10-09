@@ -12,10 +12,11 @@ import { User } from '../user.schema';
 })
 export class RegistroComponent {
 
-  private fb = inject(FormBuilder);
+  private registrocorreto: boolean = false;
   private registroService = inject(RegistroService);
 
   profileForm = new FormGroup({
+    username: new FormControl(''),
     name: new FormControl(''),
     email: new FormControl(''),
     password: new FormControl('')
@@ -28,10 +29,16 @@ export class RegistroComponent {
     const user: User = this.profileForm.value as User;
 
       // Llamar al servicio con el objeto User y suscribirse a la respuesta
-      this.registroService.register(user);
+      this.registrocorreto = this.registroService.register(user);
+      console.log(this.registrocorreto);
       this.profileForm.reset();
 
   }
+
+  public getregistrocorrecto(){
+    return this.registrocorreto;
+  }
+
 /*
 
   private fb = inject(FormBuilder);

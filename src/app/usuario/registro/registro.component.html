@@ -1,7 +1,17 @@
 <div class="container mt-5">
   <h2>Registro de Usuario</h2>
+  <h4 *ngIf="getregistrocorrecto(); else noregistrado">
+    Se registró correctamente
+  </h4>
+  <ng-template #noregistrado>
+    <h4>No se ha registrado</h4>
+  </ng-template>
 
   <form [formGroup]="profileForm">
+    <div class="mb-3">
+      <label for="name" class="form-label">Username</label>
+      <input type="text" formControlName="username" class="form-control" id="usernameregister" required>
+    </div>
     <div class="mb-3">
       <label for="name" class="form-label">Nombre</label>
       <input type="text" formControlName="name" class="form-control" id="name" required>
@@ -12,7 +22,7 @@
     </div>
     <div class="mb-3">
       <label for="password" class="form-label">Contraseña</label>
-      <input type="password" formControlName="password" class="form-control" id="password" required>
+      <input type="password" formControlName="password" class="form-control" id="passwordregister" required>
     </div>
     <button type="submit" class="btn btn-primary" (click)="onSubmit()">Registrar</button>
   </form>

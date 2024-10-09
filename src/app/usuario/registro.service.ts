@@ -8,23 +8,26 @@ import { User } from './user.schema';
 })
 export class RegistroService {
 
-  private apiUrl = 'http://localhost:3000/auth'; // Cambia esto si tu URL es diferente
+  private apiUrl = 'http://localhost:3000/auth/register'; // Cambia esto si tu URL es diferente
 
 
   constructor(private http:HttpClient) {
 
   }
 
-  public register(user: User) {
+  public register(user: User):boolean {
 
     this.http.post<User>(this.apiUrl, user).subscribe(
       (response) => {
         console.log('Respuesta del servidor:', response);
+        return response;
 
       },
       (error) => {
         console.error('Error en la solicitud POST:', error);
+        return false;
       }
     );
+    return false;
   }
 }
