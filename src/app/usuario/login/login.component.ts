@@ -1,7 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { FormControl,FormGroup } from '@angular/forms';
 import { LoginService } from '../login.service';
-import { User } from '../user.schema';
+import { Token, UserLogin } from '../user.schema';
+
+import { TokenService } from '../token.service';
+import { Router } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-login',
@@ -10,22 +15,52 @@ import { User } from '../user.schema';
 })
 export class LoginComponent {
    private loginService = inject(LoginService);
+    private tokenService = inject(TokenService);
 
   profileForm = new FormGroup({
     username: new FormControl(''),
-    name: new FormControl(''),
-    email: new FormControl(''),
     password: new FormControl('')
 
   })
 
   public onSubmit(){
-    const user: User = this.profileForm.value as User;
+    const user: UserLogin = {usernameocorreo:this.profileForm.value.username as string,password: this.profileForm.value.password};
 
       // Llamar al servicio con el objeto User y suscribirse a la respuesta
-      this.loginService.login(user);
-      this.profileForm.reset();
+      const respuesta = this.loginService.login(user).subscribe(
+        (token: Token) => {
+          console.log('Token recibido:', token);
+          // Aquí puedes almacenar el token en el localStorage o sessionStorage si es necesario
+          this.tokenService.setTocken(token.access_token);
+          this.profileForm.reset();
+        },
+        (error) => {
+          console.error('Error de autenticación:', error);
+        }
+      );
 
+
+
+  }
+
+  public logout(){
+
+      // Eliminar el token del localStorage o sessionStorage
+      this.tokenService.removeTocken();
+      console.log('Sesión cerrada');
+
+  }
+
+  public registrado(){
+      this.loginService.registrado().subscribe(
+        (response) => {
+          console.log('Respuesta del servidor:', response);
+          // Maneja la respuesta del servidor aquí
+        },
+        (error) => {
+          console.error('Error al obtener la respuesta:', error);
+          // Maneja el error aquí
+        });
   }
 
 }

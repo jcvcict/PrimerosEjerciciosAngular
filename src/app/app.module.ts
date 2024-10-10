@@ -7,7 +7,11 @@ import { Counter } from './counter/counter.component';
 import { HeroComponent } from './heroes/hero/hero.component';
 import { ListComponent } from './heroes/list/list.component';
 import { UsuarioModule } from "./usuario/usuario.module";
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+
+
+import { TokenService } from './usuario/token.service';
+import { httpauthInterceptor } from './auth.interceptor';
 
 
 
@@ -22,7 +26,9 @@ import { provideHttpClient } from '@angular/common/http';
     AppRoutingModule,UsuarioModule
 
 ],
-  providers: [provideHttpClient()],
+  providers: [provideHttpClient( withInterceptors([httpauthInterceptor])), TokenService
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

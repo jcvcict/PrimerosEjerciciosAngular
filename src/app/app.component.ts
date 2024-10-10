@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { TokenService } from './usuario/token.service';
+
 
 @Component({
   selector: 'app-root',
@@ -6,7 +8,20 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  public title:string  = 'Página de Angular';
+
+  constructor(private tokenService:TokenService){
+
+  }
+
+  isLogged():boolean{
+    return this.tokenService.isLogged();
+  }
+
+  logout(){
+    this.tokenService.removeTocken();
+  }
+
+
 
 
 }

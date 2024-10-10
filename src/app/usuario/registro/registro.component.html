@@ -1,28 +1,26 @@
-<div class="container mt-5">
-  <h2>Registro de Usuario</h2>
-  <h4 *ngIf="getregistrocorrecto(); else noregistrado">
-    Se registró correctamente
-  </h4>
-  <ng-template #noregistrado>
-    <h4>No se ha registrado</h4>
-  </ng-template>
+<div class="container d-flex justify-content-center align-items-center  flex-column border border-secondary p-1" style="margin-top: 2rem;">
+  <div class="container d-flex justify-content-center align-items-center  flex-column border  p-5">
+
 
   <form [formGroup]="profileForm">
-    <div class="mb-3">
+    <div class="mb-3 text-center">
       <label for="name" class="form-label">Username</label>
       <input type="text" formControlName="username" class="form-control" id="usernameregister" required>
     </div>
-    <div class="mb-3">
+    <div class="mb-3 text-center">
       <label for="name" class="form-label">Nombre</label>
       <input type="text" formControlName="name" class="form-control" id="name" required>
     </div>
-    <div class="mb-3">
+    <div class="mb-3 text-center">
       <label for="email" class="form-label">Correo Electrónico</label>
       <input type="email" formControlName="email" class="form-control" id="email" required>
     </div>
-    <div class="mb-3">
+    <div class="mb-3 text-center">
       <label for="password" class="form-label">Contraseña</label>
       <input type="password" formControlName="password" class="form-control" id="passwordregister" required>
     </div>
-    <button type="submit" class="btn btn-primary" (click)="onSubmit()">Registrar</button>
+
   </form>
+  <button type="submit" class="btn btn-primary" (click)="onSubmit()">Registrar</button>
+</div>
+</div>
